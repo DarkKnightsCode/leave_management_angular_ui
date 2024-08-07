@@ -1,0 +1,190 @@
+{
+  "leavedetails": [
+    {
+      "id": 1,
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-12T18:30:00.000Z",
+      "todate": "2024-08-13T18:30:00.000Z",
+      "reason": "sick leave",
+      "status": "approved"
+    },
+    {
+      "id": 2,
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-07T18:30:00.000Z",
+      "todate": "2024-08-07T18:30:00.000Z",
+      "reason": "urgent work",
+      "status": "cancelled"
+    },
+    {
+      "id": 3,
+      "empid": "AS3063",
+      "type": "full",
+      "fromdate": "",
+      "todate": "",
+      "reason": "attending a wedding ceremony",
+      "status": "submitted"
+    },
+    {
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-13T18:30:00.000Z",
+      "todate": "2024-08-14T18:30:00.000Z",
+      "reason": "Planned Leave",
+      "status": "submitted",
+      "id": 4
+    },
+    {
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-13T18:30:00.000Z",
+      "todate": "2024-08-14T18:30:00.000Z",
+      "reason": "Test",
+      "status": "submitted",
+      "id": 5
+    },
+    {
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-07T18:30:00.000Z",
+      "todate": "2024-08-08T18:30:00.000Z",
+      "reason": "sick",
+      "status": "submitted",
+      "id": 6
+    },
+    {
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-13T18:30:00.000Z",
+      "todate": "2024-08-14T18:30:00.000Z",
+      "reason": "Test",
+      "status": "submitted",
+      "id": 7
+    },
+    {
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-12T18:30:00.000Z",
+      "todate": "2024-08-13T18:30:00.000Z",
+      "reason": "planned",
+      "status": "submitted",
+      "id": 8
+    },
+    {
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-12T18:30:00.000Z",
+      "todate": "2024-08-13T18:30:00.000Z",
+      "reason": "test",
+      "status": "submitted",
+      "id": 9
+    },
+    {
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-11T18:30:00.000Z",
+      "todate": "2024-08-12T18:30:00.000Z",
+      "reason": "test",
+      "status": "submitted",
+      "id": 10
+    },
+    {
+      "empid": "AS3464",
+      "type": "half",
+      "fromdate": "2024-08-12T18:30:00.000Z",
+      "todate": "2024-08-13T18:30:00.000Z",
+      "reason": "Test",
+      "status": "submitted",
+      "id": 11
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "svb@email.com",
+      "empid": "AS3464",
+      "firstname": "Shubham",
+      "isActive": true,
+      "lastname": "Bhagwat",
+      "password": "1234567",
+      "role": "user",
+      "createdDate": ""
+    },
+    {
+      "id": 2,
+      "empid": "AS1001",
+      "firstname": "admin",
+      "lastname": "admin",
+      "email": "admin@email.com",
+      "password": "admin@123",
+      "role": "admin",
+      "isActive": true,
+      "createdDate": ""
+    },
+    {
+      "id": 3,
+      "email": "pranmay@email.com",
+      "empid": "AS3063",
+      "firstname": "Pranmay",
+      "isActive": true,
+      "lastname": "Jadhav",
+      "password": "psj@123",
+      "role": "user",
+      "createdDate": ""
+    },
+    {
+      "empid": "AS3064",
+      "firstname": "Soumadwip",
+      "lastname": "Das",
+      "email": "sdd@email.com",
+      "password": "123456",
+      "isActive": true,
+      "role": "user",
+      "id": 4
+    },
+    {
+      "empid": "AS3065",
+      "firstname": "Sushil",
+      "lastname": "Ushire",
+      "email": "sushil@email.com",
+      "password": "123456",
+      "isActive": true,
+      "role": "user",
+      "id": 5
+    },
+    {
+      "empid": "AS3066",
+      "firstname": "Somnath",
+      "lastname": "Zambare",
+      "email": "sgz@email.com",
+      "password": "123456",
+      "isActive": true,
+      "role": "user",
+      "id": 6
+    },
+    {
+      "empid": "AS3067",
+      "firstname": "Nikhil",
+      "lastname": "Bhagwat",
+      "email": "nikhil@email.com",
+      "password": "123456",
+      "isActive": true,
+      "role": "user",
+      "createdDate": 1722951176057,
+      "id": 7
+    },
+    {
+      "empid": "AS3068",
+      "firstname": "Pradip",
+      "lastname": "Ranmale",
+      "email": "pradip@email.com",
+      "password": "123456",
+      "isActive": true,
+      "role": "user",
+      "createdDate": "2024-08-07T06:53:11.814Z",
+      "id": 8
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+<mat-toolbar color="teal">
+    <span class="span-logo">
+        <img class="img-logo" src="/assets/images/aress-logo.png" alt="" />
+    </span>
+    <span class="example-spacer"></span>
+    <i class="fa fa-user"></i>&nbsp;
+    <h5>{{ displayName }}</h5>&nbsp;
+    <button *ngIf="!isUserLoggedIn" mat-button routerLink="auth/login">Login</button>
+    <button *ngIf="isUserLoggedIn" mat-button (click)="signout()">Logout</button>
+</mat-toolbar>

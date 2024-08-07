@@ -1,0 +1,40 @@
+.example-icon {
+    padding: 0 14px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-toolbar.mat-teal {
+    background: rgb(0, 177, 177);
+    color: rgb(255, 255, 255);
+    // border-radius: 30px;
+}
+
+.span-logo {
+    background: white;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+    padding: 7px;
+}
+
+.img-logo {
+    height: 45px;
+}
+
+.disabled-icon {
+    color: grey;
+    /* Adjust as needed */
+    cursor: not-allowed;
+    /* Optional: Change cursor when hovering */
+}
+
+h5 {
+    color: white;
+    font-size: medium !important;
+}
+
+button {
+    color: currentcolor !important;
+}

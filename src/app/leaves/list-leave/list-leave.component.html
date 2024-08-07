@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col card shadow-lg">
+            <div class="card-header"><b>List of Leave Details :</b>
+                <input type="button" class="btn btn-sm btn-outline-primary float-end" value="Apply Leave"
+                    (click)="applyLeaves()" />
+            </div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">From Date</th>
+                                <th scope="col">To Date</th>
+                                <th scope="col">Reason</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let items of LeaveList| paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                                <th scope="row">{{items.id}}</th>
+                                <td>{{items.type}}</td>
+                                <td>{{items.fromdate | date}}</td>
+                                <td>{{items.todate | date}}</td>
+                                <td>{{items.reason}}</td>
+                                <td>{{items.status}}</td>
+                                <td>
+                                    <i class="fa fa-edit" matTooltip=""
+                                        (click)="loggedInUserRole === 'user' ? EditLeaves(items) : null"></i>
+                                    &nbsp;
+                                    <i class="fa fa-trash"
+                                        (click)="loggedInUserRole === 'user' ? deleteLeave(items.id) : null"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example" class="float-paginator">
+                        <ul class="pagination">
+                            <li class="page-item" [ngClass]="{ disabled: p === 1 }">
+                                <a class="page-link" (click)="p = p - 1">Previous</a>
+                            </li>
+                            <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index">
+                                <a class="page-link" (click)="p = i + 1">{{ i + 1 }}</a>
+                            </li>
+                            <li class="page-item" [ngClass]="{ disabled: p === totalPages }">
+                                <a class="page-link" (click)="p = p + 1">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

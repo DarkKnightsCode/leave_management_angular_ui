@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-md-3">
+      <div class="login-form-container">
+        <div class="login-form">
+          <mat-card class="mat-card">
+            <mat-card-title class="mat-card-title">
+              <span class="title-icon"><b>LEAVE <br>MANAGEMENT <br>
+                  <hr class="line">
+                </b></span>
+            </mat-card-title>
+            <div class="div-text">Please login to get started:</div>
+            <mat-card-content>
+              <form [formGroup]="login" (ngSubmit)="validateLogin(login.value)" class="p-3">
+                <div class="input-group">
+
+                  <input class="input-border" type="text" id="username" name="username" required
+                    formControlName="username" placeholder="User Name" />
+                  <div
+                    *ngIf="login.get('username')?.invalid && (login.get('username')?.dirty || login.get('username')?.touched)"
+                    class="text-danger">
+                    <div *ngIf="login.get('username')?.errors required">
+                      User name is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group">
+
+                  <input class="input-border" type="password" id="password" name="password" required
+                    formControlName="password" placeholder="Password" />
+                  <div
+                    *ngIf="login.get('password')?.invalid && (login.get('password')?.dirty || login.get('password')?.touched)"
+                    class="text-danger">
+                    <div *ngIf="login.get('password')?.errors required">
+                      Password is required.
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" [disabled]="!login.valid" class="forSubmit mt-3" value=" Login">
+                  Login
+                </button>
+              </form>
+            </mat-card-content>
+          </mat-card>
+          <div class="login-form-footer div-bottom">
+            <p>Contact Support:</p>
+
+            <a href="mob:+919011303974">
+              <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" role="img"
+                aria-hidden="true">call</mat-icon>mob:+919011303974
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

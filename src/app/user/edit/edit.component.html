@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="rows">
+        <div class="cols">
+            <div class="card container mt-3">
+                <div class="card-header">
+                    Update Employee Details:
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="UpdationForm" (ngSubmit)="onSubmit()" class="row g-3">
+                        <div class="col-md-6 form-group">
+                            <input type="text" formControlName="firstname" class="form-control" placeholder="First name"
+                                aria-label="First name" />
+                            <div *ngIf="UpdationForm.get('firstname').errors?.['required']" class="text-danger">
+                                <div>First name is required</div>
+                            </div>
+                            <div *ngIf="UpdationForm.get('firstname').errors?.['minlength']" class="text-danger">
+                                <div>Name is required more than 3 characters</div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" formControlName="lastname" class="form-control" placeholder="Last name"
+                                aria-label="Last name" />
+                            <div *ngIf="UpdationForm.get('lastname').errors?.['required']" class="text-danger">
+                                <div>Last name is required</div>
+                            </div>
+                            <div *ngIf="UpdationForm.get('lastname').errors?.['minlength']" class="text-danger">
+                                <div>Last name is required more than 3 characters</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" formControlName="email" id="email" class="form-control"
+                                placeholder="Enter Email" aria-label="Email" />
+                            <div *ngIf="UpdationForm.get('email')?.invalid && (UpdationForm.get('email')?.dirty || UpdationForm.get('email')?.touched)"
+                                class="text-danger">
+                                <div *ngIf="UpdationForm.get('email')?.errors required">
+                                    Email is required.
+                                </div>
+                                <div *ngIf="UpdationForm.get('email')?.errors email">
+                                    Please enter a valid email address.
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-primary" mat-dialog-close cdkFocusInitial
+                            [disabled]="UpdationForm.invalid">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

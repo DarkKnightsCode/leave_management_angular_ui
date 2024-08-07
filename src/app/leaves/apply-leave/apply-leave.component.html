@@ -1,0 +1,90 @@
+<div class="container mt-3">
+    <div class="rows">
+        <div class="cols">
+            <div class="card shadow-lg bg-body-tertiary">
+                <div class="card-header">
+                    <b>Apply Leave :</b>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="applyLeaveForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group p-2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="empid">Employee ID</label>
+                                    <input type="text" name="empid" class="form-control" id="empid"
+                                        formControlName="empid" maxlength="6">
+                                    <div *ngIf="applyLeaveForm.get('empid')?.touched && applyLeaveForm.get('empid')?.errors?.['required']"
+                                        class="text-danger">
+                                        <div>Employee ID is required</div>
+                                    </div>
+                                    <div *ngIf="applyLeaveForm.get('empid')?.touched && applyLeaveForm.get('empid')?.errors?.['maxlength']"
+                                        class="text-danger">
+                                        <div>Employee ID cannot be more than 6 characters</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="type">Leave Type</label>
+                                    <select class="form-select" id="type" name="type"
+                                        aria-label="Default select example" formControlName="type">
+                                        <option value="">Select option</option>
+                                        <option value="half">Half Day</option>
+                                        <option value="full">Full Day</option>
+                                    </select>
+                                    <div *ngIf="applyLeaveForm.get('type')?.touched && applyLeaveForm.get('type')?.errors?.['required']"
+                                        class="text-danger">
+                                        <div>Leave Type is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group p-2">
+                            <div class="row">
+                                <div class="col-7" [formGroup]="dateRangeForm">
+                                    <label for="datepicker">Select the date range for Leaves</label>
+                                    <mat-form-field appearance="fill" class="form-control" id="datepicker">
+                                        <mat-date-range-input [rangePicker]="picker1" class="form-control">
+                                            <input name="fromdate" matStartDate placeholder="Start date"
+                                                formControlName="fromdate">
+                                            <input name="todate" matEndDate placeholder="End date"
+                                                formControlName="todate">
+                                        </mat-date-range-input>
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #picker1></mat-date-range-picker>
+                                        <mat-error *ngIf="dateRangeForm.hasError('validDate')">
+                                            The end date must be after the start date
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group p-2">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="reason" class="form-label">Reason</label>
+                                        <textarea class="form-control" id="reason" name="reason" rows="3"
+                                            formControlName="reason"></textarea>
+                                        <div *ngIf="applyLeaveForm.get('reason')?.touched && applyLeaveForm.get('reason')?.errors?.['required']"
+                                            class="text-danger">
+                                            <div>Reason is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group d-inline-flex p-2">
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary" mat-dialog-close
+                                        [disabled]="applyLeaveForm.invalid">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
