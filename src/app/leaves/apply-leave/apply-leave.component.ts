@@ -4,6 +4,7 @@ import { LeaveService } from '../../services/leave.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-apply-leave',
@@ -14,15 +15,15 @@ export class ApplyLeaveComponent {
   applyLeaveForm: FormGroup;
   dateRangeForm: FormGroup;
   private empid: string = '';
-
-  public leaveList: any;
+  private todaysdate = new Date().toISOString();
 
   constructor(
     private fb: FormBuilder,
     private leaveService: LeaveService,
     private authService: AuthenticationService,
     private toast: ToastrService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
 
     this.empid = this.authService.currentuserinfo.empId;
@@ -39,9 +40,7 @@ export class ApplyLeaveComponent {
     });
   }
 
-  ngOnInit(): void {
-    this.getAllLeaveDetails();
-  }
+  ngOnInit(): void { }
 
   dateRangeValidator(group: FormGroup): { [key: string]: boolean } | null {
     const startDate = group.get('fromdate')?.value;
@@ -54,32 +53,38 @@ export class ApplyLeaveComponent {
   }
 
   onSubmit(): void {
-    if (this.applyLeaveForm.invalid) {
+    let isDateValidated: boolean = true;
+    if (this.applyLeaveForm.valid) {
+      const formValues = this.applyLeaveForm.value;
+      const dateValues = this.dateRangeForm.value;
+      const request = {
+        empid: formValues.empid,
+        type: formValues.type,
+        fromdate: new Date(dateValues.fromdate).toISOString(),
+        todate: new Date(dateValues.todate).toISOString(),
+        reason: formValues.reason,
+        status: "submitted"
+      }
+      this.leaveService.getLeavesByEmployeeID(this.empid).subscribe((res: any) => {
+        res.forEach((data: any) => {
+          if (request.fromdate < data.todate || request.fromdate == data.fromdate || request.fromdate == data.todate) {
+            this.toast.error('Leave request is already submitted for following dates');
+            isDateValidated = false;
+          }
+        });
+        if (isDateValidated) {
+          this.leaveService.applyLeave(request).subscribe((res: any) => {
+            this.router.navigate(['/leaves/list-leaves/' + this.empid]);
+            this.dialog.closeAll();
+            this.toast.success("Leave Submitted Successfully!");
+          });
+        }
+      });
+    }
+    else {
       this.applyLeaveForm.markAllAsTouched();
       return;
     }
-    const formValues = this.applyLeaveForm.value;
-    const dateValues = this.dateRangeForm.value;
-    const request = {
-      empid: formValues.empid,
-      type: formValues.type,
-      fromdate: dateValues.fromdate,
-      todate: dateValues.todate,
-      reason: formValues.reason,
-      status: "submitted"
-    }
-
-
-
-    this.leaveService.applyLeave(request).subscribe((res: any) => {
-      this.toast.success("Leave Submitted Successfully!");
-    });
-  }
-
-  private getAllLeaveDetails(): any {
-    this.leaveService.getLeavesByEmployeeID('AS3464').subscribe((res: any) => {
-      this.leaveList = res;
-    });
   }
 }
 

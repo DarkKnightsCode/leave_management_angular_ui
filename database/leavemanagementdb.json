@@ -98,6 +98,42 @@
       "reason": "Test",
       "status": "submitted",
       "id": 11
+    },
+    {
+      "empid": "AS3067",
+      "type": "full",
+      "fromdate": "2024-08-12T18:30:00.000Z",
+      "todate": "2024-08-13T18:30:00.000Z",
+      "reason": "Family Function",
+      "status": "submitted",
+      "id": 12
+    },
+    {
+      "empid": "AS3067",
+      "type": "full",
+      "fromdate": "2024-08-19T18:30:00.000Z",
+      "todate": "2024-08-20T18:30:00.000Z",
+      "reason": "Going out of station",
+      "status": "submitted",
+      "id": 13
+    },
+    {
+      "empid": "AS3067",
+      "type": "full",
+      "fromdate": "2024-09-09T18:30:00.000Z",
+      "todate": "2024-09-10T18:30:00.000Z",
+      "reason": "Festival",
+      "status": "submitted",
+      "id": 14
+    },
+    {
+      "empid": "AS3067",
+      "type": "full",
+      "fromdate": "2024-09-11T18:30:00.000Z",
+      "todate": "2024-09-11T18:30:00.000Z",
+      "reason": "birthday",
+      "status": "submitted",
+      "id": 15
     }
   ],
   "users": [
