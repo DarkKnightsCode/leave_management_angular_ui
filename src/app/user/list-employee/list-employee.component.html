@@ -16,29 +16,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let items of usersList  | paginate: { itemsPerPage: itemsPerPage, currentPage: p}">
+                    <tr
+                        *ngFor="let items of usersList  | paginate: { itemsPerPage: itemsPerPage, currentPage: newPage}">
                         <th scope="row">{{items.empid}}</th>
                         <td>{{items.firstname}}</td>
                         <td>{{items.lastname}}</td>
                         <td>{{items.email}}</td>
                         <td>
-                            <i class="fa fa-eye" (click)="ViewLeaves(items.empid)"></i>
+                            <i class="fa fa-eye" (click)="ViewLeaves(items.empid)" matTooltip="View Leaves"></i>
                             &nbsp;
-                            <i class="fa fa-edit" (click)="openEditEmployeeDialog(items.empid)"></i>
+                            <i class="fa fa-edit" (click)="openEditEmployeeDialog(items.empid)"
+                                matTooltip="Edit Details"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <nav aria-label="Page navigation example">
                 <ul class="pagination float-paginator">
-                    <li class="page-item" [ngClass]="{ disabled: p === 1 }">
-                        <a class="page-link" (click)="p = p - 1">Previous</a>
+                    <li class="page-item" [ngClass]="{ disabled: newPage === 1 }">
+                        <a class="page-link" (click)="newPage = newPage - 1">Previous</a>
                     </li>
                     <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index">
-                        <a class="page-link" (click)="p = i + 1">{{ i + 1 }}</a>
+                        <a class="page-link" (click)="newPage = i + 1">{{ i + 1 }}</a>
                     </li>
-                    <li class="page-item" [ngClass]="{ disabled: p === totalPages }">
-                        <a class="page-link" (click)="p = p + 1">Next</a>
+                    <li class="page-item" [ngClass]="{ disabled: newPage === totalPages }">
+                        <a class="page-link" (click)="newPage = newPage + 1">Next</a>
                     </li>
                 </ul>
             </nav>

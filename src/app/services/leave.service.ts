@@ -12,18 +12,38 @@ export class LeaveService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * To get the all leaves records by employee ID
+   * @param empId 
+   * @returns LeaveDetailsResponse[]
+   */
   public getLeavesByEmployeeID(empId: string): Observable<LeaveDetailsResponse> {
     return this.http.get<LeaveDetailsResponse>(`${this.leaveUrl}?empid=${empId}`);
   }
 
+  /**
+   * To fetch the record by leave id
+   * @param leaveid 
+   * @returns LeaveDetailsResponse
+   */
   public getLeavesByLeaveID(leaveid: number): Observable<LeaveDetailsResponse> {
     return this.http.get<LeaveDetailsResponse>(`${this.leaveUrl}/${leaveid}`);
   }
 
+  /**
+   * To post the data to the database for apply leave request
+   * @param leaveRequest 
+   * @returns LeaveDetailsResponse
+   */
   public applyLeave(leaveRequest: any): Observable<any> {
     return this.http.post(this.leaveUrl, leaveRequest);
   }
 
+  /**
+   * To delete the leave record by leave id
+   * @param leaveid 
+   * @returns void
+   */
   public deleteLeaveByID(leaveid: number): Observable<any> {
     return this.http.delete(`${this.leaveUrl}/${leaveid}`)
   }

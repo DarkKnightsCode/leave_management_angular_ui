@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
 import { ListLeaveComponent } from './list-leave/list-leave.component';
 import { EditLeavesComponent } from './edit-leaves/edit-leaves.component';
-import { AddLeaveComponent } from './add-leave/add-leave.component';
 import { authGuard } from '../services/auth.guard';
 
 const routes: Routes = [

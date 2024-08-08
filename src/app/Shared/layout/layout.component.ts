@@ -9,17 +9,11 @@ import { Router, NavigationEnd } from '@angular/router';
 export class LayoutComponent implements OnInit {
   public showHeaderFooter: boolean = true;
 
-  /**
-   *
-   */
-  constructor(private router: Router) {
-
-  }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Hide header and footer for the login page
         this.showHeaderFooter = !event.urlAfterRedirects.includes('/login');
       }
     });

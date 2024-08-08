@@ -24,7 +24,6 @@ export class EditComponent {
     private userService: UserService
   ) {
     this.empid = data.empidParam;
-    console.log(this.empid);
   }
 
   ngOnInit(): any {
@@ -51,6 +50,9 @@ export class EditComponent {
 
   }
 
+  /**
+  * To validate the records and submit the data for put request 
+  */
   public onSubmit(): any {
     let updateRequest: any = {
       id: this.empDetails.id,
@@ -62,7 +64,6 @@ export class EditComponent {
       password: this.empDetails.password,
       role: this.empDetails.role
     }
-
     this.userService.updateEmployeeDetails(this.empDetails.id, updateRequest).subscribe((res: any) => { });
   }
 

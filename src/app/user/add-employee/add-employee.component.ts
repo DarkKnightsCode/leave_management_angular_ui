@@ -39,7 +39,6 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.registrationForm = this.fb.group({
       firstName: ['', [
         Validators.required,
@@ -69,10 +68,11 @@ export class AddEmployeeComponent implements OnInit {
     );
   }
 
+  /**
+   * To validate the records and submit the data for post request 
+   */
   onSubmit(): void {
-
     if (this.registrationForm.valid) {
-      console.log(this.registrationForm.value);
       let postRequest = {
         empid: this.NextEmpId,
         firstname: this.registrationForm.value.firstName,
@@ -85,7 +85,6 @@ export class AddEmployeeComponent implements OnInit {
       }
 
       this.userService.getEmployeeByEmailId(postRequest.email).subscribe(result => {
-        debugger
         if (result.length == 0) {
           this.userService.addNewEmployee(postRequest).subscribe(data => {
             this.toastr.success("New Employee Added Successfully");
@@ -96,13 +95,17 @@ export class AddEmployeeComponent implements OnInit {
           this.registrationForm.markAllAsTouched();
         }
       });
-
     } else {
       this.registrationForm.markAllAsTouched();
       this.registrationForm.email.markAllAsTouched();
     }
   }
 
+  /**
+   * To validate password and confirm password are same
+   * @param group 
+   * @returns boolean
+   */
   passwordMatchValidator(group: FormGroup): { mismatch: boolean } | null {
     const passwordControl = group.get('password');
     const confirmPasswordControl = group.get('confirmPassword');

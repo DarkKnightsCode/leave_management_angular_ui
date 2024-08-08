@@ -25,7 +25,6 @@ export class ApplyLeaveComponent {
     private router: Router,
     private dialog: MatDialog
   ) {
-
     this.empid = this.authService.currentuserinfo.empId;
     this.dateRangeForm = this.fb.group({
       fromdate: ['', [Validators.required]],
@@ -42,18 +41,33 @@ export class ApplyLeaveComponent {
 
   ngOnInit(): void { }
 
+  /**
+   * To Validate the entered date range
+   * @param group 
+   * @returns boolean if date range is valid
+   */
   dateRangeValidator(group: FormGroup): { [key: string]: boolean } | null {
     const startDate = group.get('fromdate')?.value;
     const endDate = group.get('todate')?.value;
     return startDate && endDate && endDate < startDate ? { validDate: true } : null;
   }
 
+  /**
+   * To Navigate to the list leaves component
+   * @returns void
+   */
   public viewLeaves(): void {
     this.router.navigate(['/leaves/list-leaves/' + this.empid]);
   }
 
+  /**
+   * To post the data to database after click on submit button
+   * @returns void
+   */
   onSubmit(): void {
     let isDateValidated: boolean = true;
+    let existingLeaves: number = 0;
+
     if (this.applyLeaveForm.valid) {
       const formValues = this.applyLeaveForm.value;
       const dateValues = this.dateRangeForm.value;
@@ -67,11 +81,14 @@ export class ApplyLeaveComponent {
       }
       this.leaveService.getLeavesByEmployeeID(this.empid).subscribe((res: any) => {
         res.forEach((data: any) => {
-          if (request.fromdate < data.todate || request.fromdate == data.fromdate || request.fromdate == data.todate) {
-            this.toast.error('Leave request is already submitted for following dates');
+          if (request.fromdate == data.fromdate || request.fromdate == data.todate) {
+            existingLeaves++;
             isDateValidated = false;
           }
         });
+        if (existingLeaves > 0) {
+          this.toast.error('Leave request is already submitted for following dates');
+        }
         if (isDateValidated) {
           this.leaveService.applyLeave(request).subscribe((res: any) => {
             this.router.navigate(['/leaves/list-leaves/' + this.empid]);

@@ -4,6 +4,7 @@ import { LeaveService } from '../../services/leave.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ApplyLeaveComponent } from '../apply-leave/apply-leave.component';
 import { EditLeavesComponent } from '../edit-leaves/edit-leaves.component';
+import { DialogComponent } from '../../Shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-list-leave',
@@ -34,7 +35,11 @@ export class ListLeaveComponent implements OnInit {
     });
   }
 
-  public applyLeaves(): any {
+  /**
+   * To Open the apply leave dialog box
+   * @returns void
+   */
+  public applyLeaves(): void {
     const dialogref = this.dialog.open(ApplyLeaveComponent, {
       width: '800px',
       height: '550px',
@@ -44,14 +49,35 @@ export class ListLeaveComponent implements OnInit {
     });
   }
 
-  public deleteLeave(leaveid: number): any {
-    this.leaveService.deleteLeaveByID(leaveid).subscribe(res => {
-      console.log(res);
-      this.ngOnInit();
-    })
+  /**
+   * To Open the delete leave dialog box for confirmation
+   * @returns void
+   */
+  public deleteLeave(leaveid: number): void {
+    const dialogref = this.dialog.open(DialogComponent, {
+      width: '300px',
+      data: {
+        title: 'Delete Confirmation',
+        message: 'Are you sure want to delete this leave?',
+        noButton: true,
+        actionButtonTitle: 'Yes'
+      },
+    });
+    dialogref.afterClosed().subscribe((res) => {
+      if (res !== undefined) {
+        this.leaveService.deleteLeaveByID(leaveid).subscribe(res => {
+          this.ngOnInit();
+        })
+      }
+    });
+
   }
 
-  public EditLeaves(leavedata: any): any {
+  /**
+   * To Open the edit leave dialog box
+   * @returns void
+   */
+  public EditLeaves(leavedata: any): void {
     const dialogref = this.dialog.open(EditLeavesComponent, {
       width: '800px',
       height: '550px',
@@ -62,6 +88,10 @@ export class ListLeaveComponent implements OnInit {
     });
   }
 
+  /**
+   * To get the total pages count
+   * @return number
+   */
   get totalPages(): number {
     return Math.ceil(this.LeaveList.length / this.itemsPerPage);
   }

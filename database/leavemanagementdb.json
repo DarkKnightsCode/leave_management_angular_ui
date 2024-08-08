@@ -10,15 +10,6 @@
       "status": "approved"
     },
     {
-      "id": 2,
-      "empid": "AS3464",
-      "type": "half",
-      "fromdate": "2024-08-07T18:30:00.000Z",
-      "todate": "2024-08-07T18:30:00.000Z",
-      "reason": "urgent work",
-      "status": "cancelled"
-    },
-    {
       "id": 3,
       "empid": "AS3063",
       "type": "full",
@@ -48,15 +39,6 @@
     {
       "empid": "AS3464",
       "type": "half",
-      "fromdate": "2024-08-07T18:30:00.000Z",
-      "todate": "2024-08-08T18:30:00.000Z",
-      "reason": "sick",
-      "status": "submitted",
-      "id": 6
-    },
-    {
-      "empid": "AS3464",
-      "type": "half",
       "fromdate": "2024-08-13T18:30:00.000Z",
       "todate": "2024-08-14T18:30:00.000Z",
       "reason": "Test",
@@ -71,33 +53,6 @@
       "reason": "planned",
       "status": "submitted",
       "id": 8
-    },
-    {
-      "empid": "AS3464",
-      "type": "half",
-      "fromdate": "2024-08-12T18:30:00.000Z",
-      "todate": "2024-08-13T18:30:00.000Z",
-      "reason": "test",
-      "status": "submitted",
-      "id": 9
-    },
-    {
-      "empid": "AS3464",
-      "type": "half",
-      "fromdate": "2024-08-11T18:30:00.000Z",
-      "todate": "2024-08-12T18:30:00.000Z",
-      "reason": "test",
-      "status": "submitted",
-      "id": 10
-    },
-    {
-      "empid": "AS3464",
-      "type": "half",
-      "fromdate": "2024-08-12T18:30:00.000Z",
-      "todate": "2024-08-13T18:30:00.000Z",
-      "reason": "Test",
-      "status": "submitted",
-      "id": 11
     },
     {
       "empid": "AS3067",
@@ -134,6 +89,24 @@
       "reason": "birthday",
       "status": "submitted",
       "id": 15
+    },
+    {
+      "empid": "AS3464",
+      "type": "full",
+      "fromdate": "2024-08-07T18:30:00.000Z",
+      "todate": "2024-08-14T18:30:00.000Z",
+      "reason": "Casual",
+      "status": "submitted",
+      "id": 16
+    },
+    {
+      "empid": "AS3464",
+      "type": "full",
+      "fromdate": "2024-08-08T18:30:00.000Z",
+      "todate": "2024-08-14T18:30:00.000Z",
+      "reason": "ok",
+      "status": "submitted",
+      "id": 17
     }
   ],
   "users": [
@@ -145,8 +118,7 @@
       "isActive": true,
       "lastname": "Bhagwat",
       "password": "1234567",
-      "role": "user",
-      "createdDate": ""
+      "role": "user"
     },
     {
       "id": 2,

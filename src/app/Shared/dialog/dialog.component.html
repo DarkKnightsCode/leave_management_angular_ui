@@ -3,5 +3,6 @@
     {{ data.message }}
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+    <button *ngIf="noButton" mat-button (click)="onNoClick()">No</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>{{actionButtonTitle}}</button>
 </mat-dialog-actions>

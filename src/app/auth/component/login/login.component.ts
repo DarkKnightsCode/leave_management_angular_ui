@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogComponent } from '../../../Shared/dialog/dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -30,7 +31,12 @@ export class LoginComponent implements OnInit {
     username: '',
   };
 
-  constructor(private authservice: AuthenticationService, public dialog: MatDialog, private router: Router) {
+  constructor(
+    private authservice: AuthenticationService,
+    public dialog: MatDialog,
+    private router: Router,
+    private toast: ToastrService,
+  ) {
     localStorage.clear();
   }
 
@@ -41,38 +47,53 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public validateLogin(loginCredential: any): any {
+  /**
+   * To Validate the user credentials and redirect to respective pages as per role
+   * @param loginCredential 
+   * @returns void
+   */
+  public validateLogin(loginCredential: any): void {
     this.credentials.username = loginCredential.username;
     this.credentials.password = loginCredential.password;
 
     this.authservice.fetchCredentials(loginCredential).subscribe((res: any) => {
-      if (res.length != 0 && res[0] != undefined && res[0].role === 'user') {
-        this.authservice.currentuserinfo.role = res[0].role;
-        this.authservice.currentuserinfo.username = res[0].email;
-        this.authservice.currentuserinfo.isactive = "true";
-        this.authservice.currentuserinfo.empId = res[0].empid;
-        localStorage['logininfo'] = JSON.stringify(this.authservice.currentuserinfo);
-        this.openSuccessDialog(res[0]);
-
+      debugger
+      if (res[0] == undefined) {
+        this.toast.error("Please enter valid credentials!!!");
       }
       else {
-        localStorage['logininfo'] = JSON.stringify({
-          username: res[0].email,
-          role: 'admin',
-          isactive: "true"
-        });
-        this.openSuccessDialog(res[0]);
+        if (res.length != 0 && res[0] != undefined && res[0].role === 'user') {
+          this.authservice.currentuserinfo.role = res[0].role;
+          this.authservice.currentuserinfo.username = res[0].email;
+          this.authservice.currentuserinfo.isactive = "true";
+          this.authservice.currentuserinfo.empId = res[0].empid;
+          localStorage['logininfo'] = JSON.stringify(this.authservice.currentuserinfo);
+          this.openSuccessDialog(res[0]);
+        }
+        else {
+          localStorage['logininfo'] = JSON.stringify({
+            username: res[0].email,
+            role: 'admin',
+            isactive: "true"
+          });
+          this.openSuccessDialog(res[0]);
+        }
       }
-    }
-    );
+    });
   }
 
+  /**
+   * To open dialog for successful confirmation
+   * @param data 
+   * @returns void
+   */
   openSuccessDialog(data: any): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '300px',
       data: {
         title: 'Login Successful',
         message: 'You have successfully logged in!',
+        noButton: false
       },
     });
 

@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LeaveService } from '../../services/leave.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class EditLeavesComponent {
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private leaveService: LeaveService,
+    private toast: ToastrService,
   ) {
     this.dateRangeForm = this.fb.group({
       fromdate: [this.data.fromdate, [Validators.required]],
@@ -36,7 +38,11 @@ export class EditLeavesComponent {
 
   }
 
-  public onSubmit(): any {
+  /**
+   * To put the data to database after click on submit button
+   * @returns void
+   */
+  public onSubmit(): void {
     let updateLeaveRequest: any = {
       id: this.data.id,
       empid: this.data.empid,
@@ -46,10 +52,11 @@ export class EditLeavesComponent {
       reason: this.editLeaveForm.value.reason,
       status: this.data.status
     }
-
     this.leaveService.updateLeaveDetails(this.data.id, updateLeaveRequest).subscribe(res => {
-      console.log(res);
-    })
+      if (res !== undefined) {
+        this.toast.success("Leave updated successfully!");
+      }
+    });
   }
 
 }

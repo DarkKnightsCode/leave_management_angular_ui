@@ -61,13 +61,16 @@ export class UserService {
   }
 
 
+  /**
+   * To fetch the latest record
+   * @returns lastest leave record 
+   */
   getLatestRecord(): Observable<any> {
     return this.getEmployeeList().pipe(
       map(records => {
         if (!records || records.length === 0) {
           return null;
         }
-
         // Find the latest record by ID
         const latestRecord = records.reduce((latest: { id: number; }, record: { id: number; }) =>
           record.id > latest.id ? record : latest

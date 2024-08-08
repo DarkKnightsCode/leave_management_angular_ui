@@ -12,7 +12,6 @@ import { EditLeavesComponent } from './edit-leaves/edit-leaves.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { AddLeaveComponent } from './add-leave/add-leave.component';
 import { TableModule } from 'primeng/table';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NumberToArrayPipe } from '../Shared/pipes/number-to-array.pipe';
@@ -24,7 +23,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ListLeaveComponent,
     ApplyLeaveComponent,
     EditLeavesComponent,
-    AddLeaveComponent,
     NumberToArrayPipe
   ],
   imports: [

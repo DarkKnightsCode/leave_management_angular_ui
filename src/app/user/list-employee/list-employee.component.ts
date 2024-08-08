@@ -13,7 +13,7 @@ import { AddEmployeeComponent } from '../add-employee/add-employee.component';
   styleUrl: './list-employee.component.scss'
 })
 export class ListEmployeeComponent implements OnInit, AfterViewInit {
-  p: number = 1;
+  newPage: number = 1;
   itemsPerPage: number = 5;
   Math: any;
   public usersList: any = [];
@@ -27,10 +27,15 @@ export class ListEmployeeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.listEmployees();
+  }
+
+  listEmployees() {
     this.userService.getEmployeeList().subscribe((res: any) => {
       this.usersList = res;
     });
   }
+
   dataSource = new MatTableDataSource<any>(this.usersList);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,20 +44,30 @@ export class ListEmployeeComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  public ViewLeaves(empid: string): any {
+  /**
+   * To navigate to list leaves page
+   * @param empid 
+   * @returns void
+   */
+  public ViewLeaves(empid: string): void {
     this.router.navigate(['/leaves/list-leaves/' + empid]);
-    //this.router.navigate(['/leaves/add-leave']);
   }
 
-  public addEmployee(): any {
+  /**
+   * To open the dialog box for adding new employee 
+   */
+  public addEmployee(): void {
     const dialogref = this.dialog.open(AddEmployeeComponent, {
       width: '900px',
     });
     dialogref.afterClosed().subscribe((res) => {
-      this.ngOnInit();
+      this.listEmployees();
     });
   }
 
+  /**
+   * To open the dialog box for edit employee details
+   */
   public openEditEmployeeDialog(empid: string): any {
     const dialogref = this.dialog.open(EditComponent, {
       width: '800px',
@@ -62,10 +77,14 @@ export class ListEmployeeComponent implements OnInit, AfterViewInit {
       }
     });
     dialogref.afterClosed().subscribe((res) => {
-      this.ngOnInit();
+      this.listEmployees();
     });
   }
 
+  /**
+   * To get the total pages count
+   * @return number
+   */
   get totalPages(): number {
     return Math.ceil(this.usersList.length / this.itemsPerPage);
   }
