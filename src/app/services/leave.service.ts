@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { LeaveDetailsResponse } from '../../models/leavemodel';
 
 
@@ -9,6 +9,7 @@ import { LeaveDetailsResponse } from '../../models/leavemodel';
 })
 export class LeaveService {
   public leaveUrl = 'http://localhost:3000/leavedetails';
+  public leaveAPIUrl = 'https://localhost:7138/Leave';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +19,7 @@ export class LeaveService {
    * @returns LeaveDetailsResponse[]
    */
   public getLeavesByEmployeeID(empId: string): Observable<LeaveDetailsResponse> {
-    return this.http.get<LeaveDetailsResponse>(`${this.leaveUrl}?empid=${empId}`);
+    return this.http.get<LeaveDetailsResponse>(`${this.leaveAPIUrl}/GetLeavesByEmployeeId?employeeId=${empId}`);
   }
 
   /**
@@ -27,7 +28,7 @@ export class LeaveService {
    * @returns LeaveDetailsResponse
    */
   public getLeavesByLeaveID(leaveid: number): Observable<LeaveDetailsResponse> {
-    return this.http.get<LeaveDetailsResponse>(`${this.leaveUrl}/${leaveid}`);
+    return this.http.get<LeaveDetailsResponse>(`${this.leaveUrl}/GetLeaveByLeaveId?id=${leaveid}`);
   }
 
   /**
@@ -36,7 +37,7 @@ export class LeaveService {
    * @returns LeaveDetailsResponse
    */
   public applyLeave(leaveRequest: any): Observable<any> {
-    return this.http.post(this.leaveUrl, leaveRequest);
+    return this.http.post(`${this.leaveAPIUrl}/ApplyLeave`, leaveRequest);
   }
 
   /**
@@ -45,7 +46,7 @@ export class LeaveService {
    * @returns void
    */
   public deleteLeaveByID(leaveid: number): Observable<any> {
-    return this.http.delete(`${this.leaveUrl}/${leaveid}`)
+    return this.http.delete(`${this.leaveAPIUrl}/DeleteLeaveData?leaveId=${leaveid}`).pipe(catchError(throwError));
   }
 
   /**
@@ -55,8 +56,7 @@ export class LeaveService {
    * @returns Success status code
    */
   public updateLeaveDetails(id: number, updateRequest: any): Observable<any> {
-
-    const url = `${this.leaveUrl}/${id}`;
+    const url = `${this.leaveAPIUrl}/UpdateLeaveDetails/${id}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });

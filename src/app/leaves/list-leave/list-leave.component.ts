@@ -65,7 +65,7 @@ export class ListLeaveComponent implements OnInit {
     });
     dialogref.afterClosed().subscribe((res) => {
       if (res !== undefined) {
-        this.leaveService.deleteLeaveByID(leaveid).subscribe(res => {
+        this.leaveService.deleteLeaveByID(leaveid).subscribe(() => {
           this.ngOnInit();
         })
       }

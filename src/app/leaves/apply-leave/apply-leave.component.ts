@@ -77,7 +77,7 @@ export class ApplyLeaveComponent {
         fromdate: new Date(dateValues.fromdate).toISOString(),
         todate: new Date(dateValues.todate).toISOString(),
         reason: formValues.reason,
-        status: "submitted"
+        status: "pending"
       }
       this.leaveService.getLeavesByEmployeeID(this.empid).subscribe((res: any) => {
         res.forEach((data: any) => {

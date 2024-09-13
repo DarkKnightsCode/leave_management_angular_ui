@@ -10,12 +10,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   public userURL = 'http://localhost:3000/users';
+  public userAPIUrl = 'https://localhost:7138';
   /**
    * To Get the all employee details in list.
    * @returns list of employees
    */
   public getEmployeeList(): Observable<any> {
-    return this.http.get<any[]>(this.userURL);
+    return this.http.get<any[]>(`${this.userAPIUrl}/user/GetAllUsers`);
   }
 
   /**
@@ -24,7 +25,7 @@ export class UserService {
    * @returns Employee Details
    */
   public getEmployeeById(empid: string): Observable<any> {
-    return this.http.get(`${this.userURL}?empid=${empid}`);
+    return this.http.get(`${this.userAPIUrl}/user/GetUserByEmployeeId?employeeID=${empid}`);
   }
 
   /**
@@ -33,7 +34,7 @@ export class UserService {
    * @returns Employee Details
    */
   public getEmployeeByEmailId(email: string): Observable<any> {
-    return this.http.get(`${this.userURL}?email=${email}`);
+    return this.http.get(`${this.userAPIUrl}/user/GetUserByEmail?employeeEmail=${email}`);
   }
 
   /**
@@ -44,7 +45,7 @@ export class UserService {
    */
   public updateEmployeeDetails(id: number, updateRequest: any): Observable<any> {
 
-    const url = `${this.userURL}/${id}`;
+    const url = `${this.userAPIUrl}/user/UpdateUserData/${id}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -57,7 +58,7 @@ export class UserService {
    * @returns Added User Data
    */
   public addNewEmployee(postRequest: any): Observable<any> {
-    return this.http.post(this.userURL, postRequest);
+    return this.http.post(`${this.userAPIUrl}/user/AddNewUser`, postRequest);
   }
 
 
@@ -75,7 +76,6 @@ export class UserService {
         const latestRecord = records.reduce((latest: { id: number; }, record: { id: number; }) =>
           record.id > latest.id ? record : latest
         );
-
         return latestRecord;
       })
     );

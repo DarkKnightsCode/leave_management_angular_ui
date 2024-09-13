@@ -27,7 +27,7 @@ export class AddEmployeeComponent implements OnInit {
   ) {
     this.userService.getLatestRecord().subscribe(
       (record: any) => {
-        let currentEmpid = record.empid.substr(2);
+        let currentEmpid = record.employeeId.substr(2);
         let tempid = parseInt(currentEmpid) + 1;
         let nextEmpId = 'AS' + tempid;
         this.NextEmpId = nextEmpId;
@@ -85,7 +85,9 @@ export class AddEmployeeComponent implements OnInit {
       }
 
       this.userService.getEmployeeByEmailId(postRequest.email).subscribe(result => {
-        if (result.length == 0) {
+        console.log(result.id);
+
+        if (result.id == 0) {
           this.userService.addNewEmployee(postRequest).subscribe(data => {
             this.toastr.success("New Employee Added Successfully");
           });

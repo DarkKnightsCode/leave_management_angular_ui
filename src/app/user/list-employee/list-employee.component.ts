@@ -16,7 +16,7 @@ export class ListEmployeeComponent implements OnInit, AfterViewInit {
   newPage: number = 1;
   itemsPerPage: number = 5;
   Math: any;
-  public usersList: any = [];
+  public usersList: usermodeltable[] = [];
   public displayedColumns: string[] = ['empid', 'firstname', 'email', 'status'];
 
   constructor(
@@ -30,9 +30,18 @@ export class ListEmployeeComponent implements OnInit, AfterViewInit {
     this.listEmployees();
   }
 
-  listEmployees() {
+  public listEmployees(): any {
+    this.usersList = [];
     this.userService.getEmployeeList().subscribe((res: any) => {
-      this.usersList = res;
+      res.forEach((element: any) => {
+        let data = {
+          "empid": element.employeeId,
+          "firstname": element.firstName,
+          "lastname": element.lastName,
+          "email": element.email,
+        }
+        this.usersList.push(data);
+      });
     });
   }
 
@@ -88,4 +97,12 @@ export class ListEmployeeComponent implements OnInit, AfterViewInit {
   get totalPages(): number {
     return Math.ceil(this.usersList.length / this.itemsPerPage);
   }
+}
+
+
+export interface usermodeltable {
+  "empid": string;
+  "firstname": string;
+  "lastname": string;
+  "email": string;
 }

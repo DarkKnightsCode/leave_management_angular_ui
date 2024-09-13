@@ -28,20 +28,20 @@ export class EditComponent {
 
   ngOnInit(): any {
     this.userService.getEmployeeById(this.empid).subscribe((res: any) => {
-      this.empDetails = res[0];
+      this.empDetails = res;
       this.UpdationForm = new FormGroup({
-        firstname: new FormControl(res[0]['firstname'],
+        firstname: new FormControl(res.firstName,
           [
             Validators.required,
             Validators.minLength(3),
             Validators.maxLength(50),
           ]
         ),
-        lastname: new FormControl(res[0]['lastname'], [
+        lastname: new FormControl(res.lastName, [
           Validators.required,
           Validators.minLength(3),
         ]),
-        email: new FormControl(res[0]['email'], [
+        email: new FormControl(res.email, [
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'),
         ])

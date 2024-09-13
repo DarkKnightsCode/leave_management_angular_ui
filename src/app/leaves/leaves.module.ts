@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ListLeaveComponent } from './list-leave/list-leave.component';
 import { LeaveComponent } from './leave.component';
 import { LeavesRoutingModule } from './leaves-routing.module';
@@ -23,7 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ListLeaveComponent,
     ApplyLeaveComponent,
     EditLeavesComponent,
-    NumberToArrayPipe
+    NumberToArrayPipe,
   ],
   imports: [
     CommonModule,
@@ -37,7 +37,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     TableModule,
     NgxPaginationModule,
-    MatTooltipModule
+    MatTooltipModule,
+
   ],
   providers: []
 })

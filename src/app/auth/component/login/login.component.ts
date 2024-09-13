@@ -57,7 +57,6 @@ export class LoginComponent implements OnInit {
     this.credentials.password = loginCredential.password;
 
     this.authservice.fetchCredentials(loginCredential).subscribe((res: any) => {
-      debugger
       if (res[0] == undefined) {
         this.toast.error("Please enter valid credentials!!!");
       }

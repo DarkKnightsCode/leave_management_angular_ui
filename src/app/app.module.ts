@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { EmployeeModule } from './user/employee.module';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from './Shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LeavesModule } from './leaves/leaves.module';
@@ -36,9 +36,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     EmployeeModule,
     LeavesModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
-  providers: [provideHttpClient()],
+  providers: [provideHttpClient(), DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

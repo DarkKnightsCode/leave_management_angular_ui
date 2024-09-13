@@ -107,6 +107,15 @@
       "reason": "ok",
       "status": "submitted",
       "id": 17
+    },
+    {
+      "empid": "AS3464",
+      "type": "full",
+      "fromdate": "2024-09-17T18:30:00.000Z",
+      "todate": "2024-09-17T18:30:00.000Z",
+      "reason": "going out for fun",
+      "status": "submitted",
+      "id": 18
     }
   ],
   "users": [
@@ -193,6 +202,28 @@
       "role": "user",
       "createdDate": "2024-08-07T06:53:11.814Z",
       "id": 8
+    },
+    {
+      "empid": "AS3069",
+      "firstname": "Shlok",
+      "lastname": "Bhagwat",
+      "email": "shlok@email.com",
+      "password": "123456",
+      "isActive": true,
+      "role": "user",
+      "createdDate": "2024-09-11T12:52:00.499Z",
+      "id": 9
+    },
+    {
+      "empid": "AS3070",
+      "firstname": "Nikhil",
+      "lastname": "Sawarkar ",
+      "email": "nikhils@email.com",
+      "password": "1234567",
+      "isActive": true,
+      "role": "user",
+      "createdDate": "2024-09-12T06:42:37.590Z",
+      "id": 10
     }
   ]
 }
