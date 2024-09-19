@@ -25,6 +25,6 @@ export class AuthenticationService {
    * @returns 
    */
   public fetchCredentials(credentials: any): Observable<usermodel> {
-    return this.http.get<usermodel>(`http://localhost:3000/users?email=${credentials.username}&password=${credentials.password}`);
+    return this.http.post<usermodel>(`https://localhost:7138/user/GetUserByCredentials`, credentials);
   }
 }

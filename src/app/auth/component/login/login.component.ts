@@ -57,25 +57,28 @@ export class LoginComponent implements OnInit {
     this.credentials.password = loginCredential.password;
 
     this.authservice.fetchCredentials(loginCredential).subscribe((res: any) => {
-      if (res[0] == undefined) {
+      debugger
+      console.log(res);
+
+      if (res == undefined) {
         this.toast.error("Please enter valid credentials!!!");
       }
       else {
-        if (res.length != 0 && res[0] != undefined && res[0].role === 'user') {
-          this.authservice.currentuserinfo.role = res[0].role;
-          this.authservice.currentuserinfo.username = res[0].email;
+        if (res.role === 'user') {
+          this.authservice.currentuserinfo.role = res.role;
+          this.authservice.currentuserinfo.username = res.email;
           this.authservice.currentuserinfo.isactive = "true";
-          this.authservice.currentuserinfo.empId = res[0].empid;
+          this.authservice.currentuserinfo.empId = res.employeeId;
           localStorage['logininfo'] = JSON.stringify(this.authservice.currentuserinfo);
-          this.openSuccessDialog(res[0]);
+          this.openSuccessDialog(res);
         }
         else {
           localStorage['logininfo'] = JSON.stringify({
-            username: res[0].email,
+            username: res.email,
             role: 'admin',
             isactive: "true"
           });
-          this.openSuccessDialog(res[0]);
+          this.openSuccessDialog(res);
         }
       }
     });

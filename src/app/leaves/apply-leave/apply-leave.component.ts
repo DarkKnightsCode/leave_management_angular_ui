@@ -74,8 +74,8 @@ export class ApplyLeaveComponent {
       const request = {
         empid: formValues.empid,
         type: formValues.type,
-        fromdate: new Date(dateValues.fromdate).toISOString(),
-        todate: new Date(dateValues.todate).toISOString(),
+        fromdate: new Date(dateValues.fromdate),
+        todate: new Date(dateValues.todate),
         reason: formValues.reason,
         status: "pending"
       }
